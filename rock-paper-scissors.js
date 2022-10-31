@@ -77,3 +77,46 @@ function playRound(playerSelection, computerSelection) {
 
     return output
 }
+
+function game(){
+    let winCount = 0
+    let loseCount = 0
+    let tieCount = 0
+    let score
+    let gameResult
+    
+    for (let i = 0; i < 5; i++) {
+        let roundResult = playRound()
+        if (roundResult.includes("Win")) {
+            console.log("Win")
+            winCount++
+            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
+        //    console.log(score)
+
+        } else if (roundResult.includes("Lose")) { 
+            console.log("Lose")
+            loseCount++
+            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
+        //    console.log(score)
+            
+        } else if (roundResult.includes("Tie")) {
+            console.log("Tie")
+            tieCount++
+            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
+        //    console.log(score)
+        }
+        console.log("Round: " + (i + 1))
+    }
+
+    if (winCount + loseCount + tieCount == 5 && winCount > loseCount) {
+        gameResult = "Win"
+    } else if (winCount + loseCount + tieCount == 5 && winCount < loseCount) {
+        gameResult = "Lose"
+    } else if (winCount + loseCount + tieCount == 5 && winCount == loseCount) {
+        gameResult = "Tie"
+    } else {
+        gameResult = "Invalid game, please try again"
+    }
+
+    return (gameResult + "! Score (" + score + ")")
+}
