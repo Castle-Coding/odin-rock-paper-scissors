@@ -1,3 +1,9 @@
+function getPlayerChoice() {
+    let playerChoice = prompt("Please choose rock, paper, or scissors: ")
+    playerChoice.toString
+    return (playerChoice.charAt(0).toUpperCase() + playerChoice.substring(1).toLowerCase())
+}
+
 function getComputerChoice() {
     let computerChoice
     switch ((Math.floor(Math.random() * 3))) {
