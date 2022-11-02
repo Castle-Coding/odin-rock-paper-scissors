@@ -20,6 +20,7 @@ body {
 
 .content {
     border: solid green; /* For Debugging */
+    height: 50vh;
 }
 
 /* --- Content End --- */
