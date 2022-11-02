@@ -1,0 +1,26 @@
+/* --- Site Content --- */
+
+/* --- Body Start --- */
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Header Start --- */
+
+.head {
+    border: solid red; /* For Debugging */
+    text-align: center;
+    font-size: 36px;
+}
+
+/* --- Header End --- */
+/* --- Content Start --- */
+
+.content {
+    border: solid green; /* For Debugging */
+}
+
+/* --- Content End --- */
+/* --- Body End --- */
