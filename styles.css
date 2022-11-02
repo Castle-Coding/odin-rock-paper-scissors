@@ -11,7 +11,6 @@ body {
 /* --- Header Start --- */
 
 .head {
-    border: solid red; /* For Debugging */
     font-size: 36px;
 }
 
@@ -19,26 +18,30 @@ body {
 /* --- Content Start --- */
 
 .content {
-    border: solid green; /* For Debugging */
     height: 93vh;
     display: flex;
     flex-direction: column;
 }
 
+.round-messages {
+    font-size: 18px;
+    flex-grow: 0;
+}
+
 #game-window {
-    border: solid blue;
     display: flex;
-    padding: 0 10%;
+    padding: 0 24%;
     gap: 15px;
     justify-content: center;
+    margin-bottom: 15px;
 }
 
 .round-selection {
-    border: solid red; /* For Debugging */
+    border: solid black;
 }
 
-#player-selection-box {
-    border: solid blue; /* For Debugging */
+#player-selections-box {
+    flex-grow: 1;
 }
 
 #selections {
@@ -48,20 +51,18 @@ body {
     gap: 15px;
 }
 
-.selection-image {
-    border: solid blue; /* For Debugging */
-    flex-shrink: 1;
-}
-
 .button {
-    border: solid red; /* For Debugging */
     display: flex;
     flex-direction: column;
 }
 
+.selection-image{
+    margin-bottom: -66px;    
+    border: solid black;
+}
+
 img {
     max-width: 100%;
-
 }
 
 /* --- Content End --- */
