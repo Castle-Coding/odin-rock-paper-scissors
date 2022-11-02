@@ -23,6 +23,8 @@ body {
     flex-direction: column;
 }
 
+/* --- Game Window Start --- */
+
 .round-messages {
     font-size: 18px;
     flex-grow: 0;
@@ -44,6 +46,10 @@ body {
     font-size: 20px;
     margin-top: 20px;
 }
+
+/* --- Game Window End --- */
+/* --- Player Selection Start --- */
+
 
 #player-selections-box {
     flex-grow: 1;
@@ -69,6 +75,6 @@ body {
 img {
     max-width: 100%;
 }
-
+/* --- Player Selection End --- */
 /* --- Content End --- */
 /* --- Body End --- */
