@@ -20,31 +20,49 @@ body {
 
 .content {
     border: solid green; /* For Debugging */
-    height: 50vh;
+    height: 93vh;
     display: flex;
     flex-direction: column;
 }
 
 #game-window {
-    border: solid blue; /* For Debugging */
-    height: 25vh;
+    border: solid blue;
     display: flex;
-    padding: 0 38%;
+    padding: 0 10%;
     gap: 15px;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .round-selection {
     border: solid red; /* For Debugging */
-    height: 210px;
-    width: 210px;
 }
 
 #player-selection-box {
     border: solid blue; /* For Debugging */
-
 }
 
+#selections {
+    display: flex;
+    justify-content: center;
+    padding: 0 10%;
+    gap: 15px;
+}
+
+.selection-image {
+    border: solid blue; /* For Debugging */
+    flex-shrink: 1;
+}
+
+.button {
+    border: solid red; /* For Debugging */
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+
+}
 
 /* --- Content End --- */
 /* --- Body End --- */
