@@ -40,6 +40,11 @@ body {
     border: solid black;
 }
 
+.round-score {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
 #player-selections-box {
     flex-grow: 1;
 }
