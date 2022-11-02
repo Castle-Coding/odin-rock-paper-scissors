@@ -5,13 +5,13 @@
 body {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 /* --- Header Start --- */
 
 .head {
     border: solid red; /* For Debugging */
-    text-align: center;
     font-size: 36px;
 }
 
