@@ -21,7 +21,30 @@ body {
 .content {
     border: solid green; /* For Debugging */
     height: 50vh;
+    display: flex;
+    flex-direction: column;
 }
+
+#game-window {
+    border: solid blue; /* For Debugging */
+    height: 25vh;
+    display: flex;
+    padding: 0 35%;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.round-selection {
+    border: solid red; /* For Debugging */
+    height: 210px;
+    width: 210px;
+}
+
+#player-selection-box {
+    border: solid blue; /* For Debugging */
+
+}
+
 
 /* --- Content End --- */
 /* --- Body End --- */
