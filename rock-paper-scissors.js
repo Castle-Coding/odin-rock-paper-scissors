@@ -1,9 +1,3 @@
-function getPlayerChoice() {
-    let playerChoice = prompt("Please choose Rock, Paper, or Scissors: ")
-    playerChoice.toString
-    return (playerChoice.charAt(0).toUpperCase() + playerChoice.substring(1).toLowerCase())
-}
-
 function getComputerChoice() {
     let computerChoice
     switch ((Math.floor(Math.random() * 3))) {
@@ -53,77 +47,62 @@ function evaluateChoices(playerSelection, computerSelection) {
     else {
         result = "Invalid"
     }
+
     return result
 }
 
 function playRound(playerSelection, computerSelection) {
+    const playerScoreDisplay = document.getElementById('player-score');
+    const computerScoreDisplay = document.getElementById('computer-score');
     computerSelection = getComputerChoice()
-    playerSelection = getPlayerChoice()
-    let result = evaluateChoices(playerSelection, computerSelection)
-    let output
+    playerSelection = this.id;
+    const outputDisplay = document.querySelector('#results-window')
+    changeRoundSelectionImage(playerSelection, computerSelection);
+    let result = evaluateChoices(playerSelection, computerSelection);
+    let output;
+    let gameResult;
 
-    if (result == "Win") {
+    if (winCount == 5 || loseCount == 5) {
+        let playerRoundSelectionImage = document.getElementById('player-round-selection')
+        let computerRoundSelectionImage = document.getElementById('computer-round-selection')
+        playerRoundSelectionImage.innerHTML = `<img src="./images/question-mark.png">`
+        computerRoundSelectionImage.innerHTML = `<img src="./images/question-mark.png">`
+        winCount = 0
+        loseCount = 0
+        tieCount = 0
+        playerScoreDisplay.textContent = `Player: ${winCount}`;
+        computerScoreDisplay.textContent = `Computer: ${loseCount}`;
+    } else if (result == "Win") {
+        winCount++
+        playerScoreDisplay.textContent = `Player: ${winCount}`;
         output = "You " + result + "! " + playerSelection + " beats " + computerSelection + "."
     }
     else if (result == "Lose") {
+        loseCount++
+        computerScoreDisplay.textContent = `Computer: ${loseCount}`;
         output = "You " + result + "! " + computerSelection + " beats " + playerSelection + "."
     }
     else if (result == "Tie") {
+        tieCount++
         output = "Tie! " + playerSelection + " and " + computerSelection + " are equal."
     }
     else if (result == "Invalid") {
         output = "Invalid selection; please input Rock, Paper or Scissors!"
     }
 
-    return output
-}
-
-function game() {
-    let winCount = 0
-    let loseCount = 0
-    let tieCount = 0
-    let score
-    let gameResult
-
-    for (let i = 0; i < 5; i++) {
-        let roundResult = playRound()
-        if (roundResult.includes("Win")) {
-            console.log("Win")
-            winCount++
-            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-            //    console.log(score)
-
-        } else if (roundResult.includes("Lose")) {
-            console.log("Lose")
-            loseCount++
-            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-            //    console.log(score)
-
-        } else if (roundResult.includes("Tie")) {
-            console.log("Tie")
-            tieCount++
-            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-            //    console.log(score)
+    if (checkIfGameOver()) {
+        if (winCount > loseCount) {
+            gameResult = "Win"
+            output = `Game Over! You ${gameResult}!`;
+            outputDisplay.textContent = output
+        } else if (loseCount > winCount) {
+            gameResult = "Lose"
+            output = `Game Over! You ${gameResult}!`;
+            outputDisplay.textContent = output
         }
-        console.log("Round: " + (i + 1))
     }
-
-    if (winCount + loseCount + tieCount == 5 && winCount > loseCount) {
-        gameResult = "Win"
-    } else if (winCount + loseCount + tieCount == 5 && winCount < loseCount) {
-        gameResult = "Lose"
-    } else if (winCount + loseCount + tieCount == 5 && winCount == loseCount) {
-        gameResult = "Tie"
-    } else {
-        gameResult = "Invalid game, please try again"
-    }
-
-    return (gameResult + "! Score (" + score + ")")
-}
-
-
-function testFunction(e) {
-    console.log((this.id))
+        outputDisplay.textContent = output
+        return output
 };
 
 function changeRoundSelectionImage(playerSelection, computerSelection) {
@@ -136,7 +115,7 @@ function changeRoundSelectionImage(playerSelection, computerSelection) {
             playerRoundSelectionImage.innerHTML = `<img src="./images/rock.png">`
             console.log(`Player: ${playerRoundSelectionImage.innerHTML}`)
             break;
-            
+
         case "Paper":
             playerSelection = "Paper";
             playerRoundSelectionImage.innerHTML = `<img src="./images/paper.png">`
@@ -168,82 +147,17 @@ function changeRoundSelectionImage(playerSelection, computerSelection) {
     }
 }
 
-function playUiRound(playerSelection, computerSelection) {
-    computerSelection = getComputerChoice()
-    playerSelection = this.id;
-    const outputDisplay = document.querySelector('#results-window')
-    changeRoundSelectionImage(playerSelection, computerSelection);
-    let result = evaluateChoices(playerSelection, computerSelection)
-    let output
-    
-
-    if (result == "Win") {
-        output = "You " + result + "! " + playerSelection + " beats " + computerSelection + "."
+function checkIfGameOver() {
+    if (winCount == 5 || loseCount == 5) {
+        return true;
+    } else {
+        return false;
     }
-    else if (result == "Lose") {
-        output = "You " + result + "! " + computerSelection + " beats " + playerSelection + "."
-    }
-    else if (result == "Tie") {
-        output = "Tie! " + playerSelection + " and " + computerSelection + " are equal."
-    }
-    else if (result == "Invalid") {
-        output = "Invalid selection; please input Rock, Paper or Scissors!"
-    }
-
-    console.log(output)
-    outputDisplay.textContent = output
-    return output
 }
+
+let winCount = 0
+let loseCount = 0
+let tieCount = 0
 
 const selections = Array.from(document.querySelectorAll('.selection-image'));
-selections.forEach(selection => selection.addEventListener('click', playUiRound));
-
-
-
-function gameUI() {
-    const playerScoreDisplay = document.getElementById('player-score');
-    const computerScoreDisplay = document.getElementById('computer-score');
-    let winCount = 0
-    let loseCount = 0
-    let tieCount = 0
-    let score
-    let gameResult
-    
-
-    for (let i = 0; i < 5; i++) {
-        let roundResult = playRound()
-        if (roundResult.includes("Win")) {
-            console.log("Win")
-            winCount++
-            playerScoreDisplay.textContent = `Player: ${winCount}`;
-            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-            //    console.log(score)
-
-        } else if (roundResult.includes("Lose")) {
-            console.log("Lose")
-            loseCount++
-            computerScoreDisplay.textContent = `Computer: ${winCount}`;
-            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-            //    console.log(score)
-
-        } else if (roundResult.includes("Tie")) {
-            console.log("Tie")
-            tieCount++
-            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-            //    console.log(score)
-        }
-        console.log("Round: " + (i + 1))
-    }
-
-    if (winCount + loseCount + tieCount == 5 && winCount > loseCount) {
-        gameResult = "Win"
-    } else if (winCount + loseCount + tieCount == 5 && winCount < loseCount) {
-        gameResult = "Lose"
-    } else if (winCount + loseCount + tieCount == 5 && winCount == loseCount) {
-        gameResult = "Tie"
-    } else {
-        gameResult = "Invalid game, please try again"
-    }
-
-    return (gameResult + "! Score (" + score + ")")
-}
+selections.forEach(selection => selection.addEventListener('click', playRound));
