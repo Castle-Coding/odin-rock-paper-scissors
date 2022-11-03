@@ -48,6 +48,16 @@ body {
 }
 
 /* --- Game Window End --- */
+/* --- Results Window Start --- */
+#results-window {
+    color: #c3c3c3;
+    font-size: 20px;
+    background-color: black;
+    padding: 9px 18px;
+    height: 23px;
+    width: 300px;
+    align-self: center;
+}
 /* --- Player Selection Start --- */
 
 

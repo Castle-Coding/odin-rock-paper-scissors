@@ -126,11 +126,56 @@ function testFunction(e) {
     console.log((this.id))
 };
 
+function changeRoundSelectionImage(playerSelection, computerSelection) {
+    let playerRoundSelectionImage = document.getElementById('player-round-selection')
+    let computerRoundSelectionImage = document.getElementById('computer-round-selection')
+
+    switch (playerSelection) {
+        case "Rock":
+            playerSelection = "Rock";
+            playerRoundSelectionImage.innerHTML = `<img src="./images/rock.png">`
+            console.log(`Player: ${playerRoundSelectionImage.innerHTML}`)
+            break;
+            
+        case "Paper":
+            playerSelection = "Paper";
+            playerRoundSelectionImage.innerHTML = `<img src="./images/paper.png">`
+            console.log(`Player: ${playerRoundSelectionImage.innerHTML}`)
+            break;
+        case "Scissors":
+            playerSelection = "Scissors";
+            playerRoundSelectionImage.innerHTML = `<img src="./images/scissors.png">`
+            console.log(`Player: ${playerRoundSelectionImage.innerHTML}`)
+            break;
+    }
+
+    switch (computerSelection) {
+        case "Rock":
+            computerSelection = "Rock";
+            computerRoundSelectionImage.innerHTML = `<img src="./images/rock.png">`
+            console.log(`Player: ${computerRoundSelectionImage.innerHTML}`)
+            break;
+        case "Paper":
+            computerSelection = "Paper";
+            computerRoundSelectionImage.innerHTML = `<img src="./images/paper.png">`
+            console.log(`Player: ${computerRoundSelectionImage.innerHTML}`)
+            break;
+        case "Scissors":
+            computerSelection = "Scissors";
+            computerRoundSelectionImage.innerHTML = `<img src="./images/scissors.png">`
+            console.log(`Player: ${computerRoundSelectionImage.innerHTML}`)
+            break;
+    }
+}
+
 function playUiRound(playerSelection, computerSelection) {
     computerSelection = getComputerChoice()
     playerSelection = this.id;
+    const outputDisplay = document.querySelector('#results-window')
+    changeRoundSelectionImage(playerSelection, computerSelection);
     let result = evaluateChoices(playerSelection, computerSelection)
     let output
+    
 
     if (result == "Win") {
         output = "You " + result + "! " + playerSelection + " beats " + computerSelection + "."
@@ -146,6 +191,7 @@ function playUiRound(playerSelection, computerSelection) {
     }
 
     console.log(output)
+    outputDisplay.textContent = output
     return output
 }
 
@@ -154,3 +200,50 @@ selections.forEach(selection => selection.addEventListener('click', playUiRound)
 
 
 
+function gameUI() {
+    const playerScoreDisplay = document.getElementById('player-score');
+    const computerScoreDisplay = document.getElementById('computer-score');
+    let winCount = 0
+    let loseCount = 0
+    let tieCount = 0
+    let score
+    let gameResult
+    
+
+    for (let i = 0; i < 5; i++) {
+        let roundResult = playRound()
+        if (roundResult.includes("Win")) {
+            console.log("Win")
+            winCount++
+            playerScoreDisplay.textContent = `Player: ${winCount}`;
+            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
+            //    console.log(score)
+
+        } else if (roundResult.includes("Lose")) {
+            console.log("Lose")
+            loseCount++
+            computerScoreDisplay.textContent = `Computer: ${winCount}`;
+            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
+            //    console.log(score)
+
+        } else if (roundResult.includes("Tie")) {
+            console.log("Tie")
+            tieCount++
+            score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
+            //    console.log(score)
+        }
+        console.log("Round: " + (i + 1))
+    }
+
+    if (winCount + loseCount + tieCount == 5 && winCount > loseCount) {
+        gameResult = "Win"
+    } else if (winCount + loseCount + tieCount == 5 && winCount < loseCount) {
+        gameResult = "Lose"
+    } else if (winCount + loseCount + tieCount == 5 && winCount == loseCount) {
+        gameResult = "Tie"
+    } else {
+        gameResult = "Invalid game, please try again"
+    }
+
+    return (gameResult + "! Score (" + score + ")")
+}
