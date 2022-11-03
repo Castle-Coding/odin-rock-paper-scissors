@@ -78,32 +78,32 @@ function playRound(playerSelection, computerSelection) {
     return output
 }
 
-function game(){
+function game() {
     let winCount = 0
     let loseCount = 0
     let tieCount = 0
     let score
     let gameResult
-    
+
     for (let i = 0; i < 5; i++) {
         let roundResult = playRound()
         if (roundResult.includes("Win")) {
             console.log("Win")
             winCount++
             score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-        //    console.log(score)
+            //    console.log(score)
 
-        } else if (roundResult.includes("Lose")) { 
+        } else if (roundResult.includes("Lose")) {
             console.log("Lose")
             loseCount++
             score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-        //    console.log(score)
-            
+            //    console.log(score)
+
         } else if (roundResult.includes("Tie")) {
             console.log("Tie")
             tieCount++
             score = "Wins: " + winCount + ", Loses: " + loseCount + ", Ties: " + tieCount + "."
-        //    console.log(score)
+            //    console.log(score)
         }
         console.log("Round: " + (i + 1))
     }
@@ -120,3 +120,37 @@ function game(){
 
     return (gameResult + "! Score (" + score + ")")
 }
+
+
+function testFunction(e) {
+    console.log((this.id))
+};
+
+function playUiRound(playerSelection, computerSelection) {
+    computerSelection = getComputerChoice()
+    playerSelection = this.id;
+    let result = evaluateChoices(playerSelection, computerSelection)
+    let output
+
+    if (result == "Win") {
+        output = "You " + result + "! " + playerSelection + " beats " + computerSelection + "."
+    }
+    else if (result == "Lose") {
+        output = "You " + result + "! " + computerSelection + " beats " + playerSelection + "."
+    }
+    else if (result == "Tie") {
+        output = "Tie! " + playerSelection + " and " + computerSelection + " are equal."
+    }
+    else if (result == "Invalid") {
+        output = "Invalid selection; please input Rock, Paper or Scissors!"
+    }
+
+    console.log(output)
+    return output
+}
+
+const selections = Array.from(document.querySelectorAll('.selection-image'));
+selections.forEach(selection => selection.addEventListener('click', playUiRound));
+
+
+
